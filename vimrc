@@ -18,13 +18,11 @@ Plugin 'https://github.com/scrooloose/nerdtree.git'
 Plugin 'https://github.com/terryma/vim-multiple-cursors.git'
 Plugin 'https://github.com/tpope/vim-surround.git'
 Plugin 'https://github.com/mattn/emmet-vim.git'
-Plugin 'https://github.com/Shougo/neocomplete.vim.git'
 Plugin 'https://github.com/mbbill/undotree.git'
 Plugin 'https://github.com/easymotion/vim-easymotion.git'
 Plugin 'https://github.com/majutsushi/tagbar.git'
 Plugin 'https://github.com/vim-scripts/vim-cursorword.git'
 Plugin 'https://github.com/bling/vim-airline.git'
-Plugin 'https://github.com/ctrlpvim/ctrlp.vim.git'
 Plugin 'https://github.com/godlygeek/tabular.git'
 Plugin 'https://github.com/moll/vim-bbye.git'
 Plugin 'https://github.com/vim-scripts/DoxygenToolkit.vim.git'
@@ -36,8 +34,6 @@ Plugin 'https://github.com/maksimr/vim-jsbeautify.git'
 Plugin 'https://github.com/gorodinskiy/vim-coloresque.git'
 Plugin 'https://github.com/rking/ag.vim.git'
 Plugin 'https://github.com/dyng/ctrlsf.vim.git'
-Plugin 'https://github.com/msanders/snipmate.vim.git'
-Plugin 'https://github.com/honza/vim-snippets.git'
 Plugin 'https://github.com/junegunn/goyo.vim.git'
 Plugin 'https://github.com/plasticboy/vim-markdown.git'
 Plugin 'https://github.com/iamcco/markdown-preview.vim.git'
@@ -71,13 +67,36 @@ Plugin 'https://github.com/gcmt/wildfire.vim.git'
 " Vundle
 Plugin 'jbgutierrez/vim-babel'
 Plugin 'mattn/webapi-vim'
+Plugin 'Yggdroot/LeaderF'
+Plugin 'https://github.com/heavenshell/vim-jsdoc'
+
+
+" 设置通用缩进策略
+set shiftwidth=4
 
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
-
+"
+" 设置主题
 syntax on
 colorscheme Zenburn
+
+" 设置通用缩进策略
+set shiftwidth=4
+set tabstop=4
+set smarttab
+set softtabstop=4
+set tw=80
+
+" 显示行号
+set nu
+
+" 设置leader
+let mapleader=","
+
+" 将ESC键映射为jk键                                       
+inoremap jk <Esc>  
 
 " javascript高亮
 let g:javascript_plugin_jsdoc = 1
@@ -94,14 +113,19 @@ let g:tagbar_autopreview = 0                   " 开启自动预???[随着光标
 let g:tagbar_type_elixir = {'ctagstype': 'elixir', 'kinds': ['f:functions:0:0', 'c:callbacks:0:0', 'd:delegates:0:0', 'e:exceptions:0:0', 'i:implementations:0:0', 'a:macros:0:0', 'o:operators:0:0', 'm:modules:0:0', 'p:protocols:0:0', 'r:records:0:0'], 'sro': '.'}
 nmap <F4> :TagbarToggle<cr><c-w><c-l>
 
-" 将ESC键映射为两次j键                                       
-inoremap jj <Esc>  
-set tabstop=4
-set expandtab
-set softtabstop
+" JsBeautify
+nmap <leader>j1 :call JsBeautify()<CR>
+nmap <leader>j2 :call JsonBeautify()<CR>
+nmap <leader>j3 :call JsxBeautify()<CR>
+nmap <leader>j4 :call HtmlBeautify()<CR>
+nmap <leader>j5 :call CSSBeautify()<CR>
 
-set nu
+" LeaderF
+nmap <leader>f :Leaderf<CR>
 
+" Ag
+
+let g:ag_working_path_mode="r"
 
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
@@ -115,3 +139,4 @@ filetype plugin indent on    " required
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
+"
