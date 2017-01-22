@@ -1,40 +1,13 @@
-set nocompatible              " be iMproved, required
+﻿set nocompatible              " be iMproved, required
 filetype off                  " required
 
-" 解决乱码问题
-set fileencodings=utf-8,gb2312,gb18030,gbk,ucs-bom,cp936,latin1
-set enc=utf8
-set fencs=utf8,gbk,gb2312,gb18030
-
-set showmatch               " 显示括号配对情况 
-
-" 设置通用缩进策略 
-set shiftwidth=4 
-set tabstop=4 
-set smarttab 
-set softtabstop=4 
-set tw=80
-
-" 退格键可用
-set backspace=indent,eol,start
-" 将ESC键映射为两次j键                                       
-inoremap jj <Esc>  
-
-" webpack监听设置
-" set backupcopy=yes
-
-set noswapfile               " 不生成交换文???
-set nobackup                 " 不生成备份文???
-
-" 显示行号
-set nu
-
 " set the runtime path to include Vundle and initialize
+
+" set rtp+=~/.vim/bundle/Vundle.vim
+" call vundle#begin()
+
 set rtp+=$HOME/vimfiles/bundle/Vundle.vim/ 
 call vundle#begin('$USERPROFILE/vimfiles/bundle/')
-
-" set rtp+=$HOME/vimfiles/bundle/Vundle.vim/
-" call vundle#begin('/c/Users/yingsong.li/vimfiles/bundle/')
 
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
@@ -42,40 +15,114 @@ call vundle#begin('$USERPROFILE/vimfiles/bundle/')
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'jnurmine/Zenburn'
-" Plugin 'https://github.com/tpope/vim-surround.git'
-Plugin 'https://github.com/ctrlpvim/ctrlp.vim.git'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'https://github.com/scrooloose/nerdtree.git'
+Plugin 'https://github.com/terryma/vim-multiple-cursors.git'
+Plugin 'https://github.com/tpope/vim-surround.git'
+Plugin 'https://github.com/mattn/emmet-vim.git'
+" Plugin 'https://github.com/mbbill/undotree.git'
+" Plugin 'https://github.com/easymotion/vim-easymotion.git'
+Plugin 'https://github.com/majutsushi/tagbar.git'
+Plugin 'https://github.com/vim-scripts/vim-cursorword.git'
+" Plugin 'https://github.com/godlygeek/tabular.git'
 " Plugin 'https://github.com/moll/vim-bbye.git'
+" Plugin 'https://github.com/vim-scripts/DoxygenToolkit.vim.git'
+" Plugin 'https://github.com/jlanzarotta/bufexplorer.git'
 " Plugin 'https://github.com/luochen1990/rainbow.git'
+" Plugin 'https://github.com/scrooloose/nerdcommenter.git'
 " Plugin 'https://github.com/Yggdroot/indentLine.git'
-" Plugin 'https://github.com/maksimr/vim-jsbeautify.git'
+Plugin 'https://github.com/maksimr/vim-jsbeautify.git'
 " Plugin 'https://github.com/gorodinskiy/vim-coloresque.git'
-" Plugin 'tomtom/tlib_vim'   
-" Plugin 'https://github.com/iamcco/markdown-preview.vim.git'
-" Plugin 'https://github.com/jiangmiao/auto-pairs.git'
+Plugin 'https://github.com/rking/ag.vim.git'
+Plugin 'https://github.com/dyng/ctrlsf.vim.git'
+" Plugin 'https://github.com/junegunn/goyo.vim.git'
+Plugin 'https://github.com/plasticboy/vim-markdown.git'
+Plugin 'https://github.com/iamcco/markdown-preview.vim.git'
+Plugin 'https://github.com/jiangmiao/auto-pairs.git'
 " Plugin 'https://github.com/tpope/vim-repeat.git'
-" Plugin 'https://github.com/othree/javascript-libraries-syntax.vim.git'
+" Plugin 'https://github.com/vim-scripts/AuthorInfo.git'  " 需要修改fplugin为plugin
+Plugin 'https://github.com/othree/javascript-libraries-syntax.vim.git'
 Plugin 'https://github.com/leshill/vim-json.git'
-" Plugin 'jwalton512/vim-blade'
+Plugin 'jwalton512/vim-blade'
+" Plugin 'https://github.com/Valloric/MatchTagAlways.git'
 Plugin 'https://github.com/gregsexton/MatchTag.git'
 " Plugin 'https://github.com/tpope/vim-fugitive.git'
 Plugin 'https://github.com/pangloss/vim-javascript.git'
 Plugin 'mxw/vim-jsx'
-" Plugin 'https://github.com/FooSoft/vim-argwrap.git'
-" Plugin 'https://github.com/Shutnik/jshint2.vim.git'
-" Plugin 'https://github.com/digitaltoad/vim-jade.git'
-" Plugin 'https://github.com/briancollins/vim-jst.git'
+Plugin 'https://github.com/FooSoft/vim-argwrap.git'
+Plugin 'https://github.com/Shutnik/jshint2.vim.git'
+Plugin 'https://github.com/digitaltoad/vim-jade.git'
+Plugin 'https://github.com/briancollins/vim-jst.git'
+" Plugin 'https://github.com/skywind3000/asyncrun.vim.git'
+" Plugin 'https://github.com/chemzqm/wxapp.vim.git'
+" Plugin 'https://github.com/airblade/vim-gitgutter.git'
+" Plugin 'https://github.com/ervandew/supertab.git'
+" Plugin 'https://github.com/nono/jquery.vim.git'
+" Plugin 'ryanoasis/vim-devicons'
+" Plugin 'trailing-whitespace'
+" Plugin 'https://github.com/Shougo/unite.vim.git'
+" Plugin 'https://github.com/scrooloose/syntastic.git'
 " Plugin 'https://github.com/gcmt/wildfire.vim.git'
+" Plugin 'https://github.com/jlanzarotta/colorSchemeExplorer.git'
+" Vundle
 Plugin 'jbgutierrez/vim-babel'
 " Plugin 'mattn/webapi-vim'
+" Leaderf / CtrlP
+Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'tacahiroy/ctrlp-funky'
-Plugin 'vim-airline/vim-airline' 
-Plugin 'vim-airline/vim-airline-themes'
+Plugin 'Yggdroot/LeaderF'
+Plugin 'https://github.com/heavenshell/vim-jsdoc'
 Plugin 'Shougo/neocomplete.vim'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 
-syntax enable
+" 解决乱码问题
+set fileencodings=utf-8,gb2312,gb18030,gbk,ucs-bom,cp936,latin1
+set enc=utf8
+set fencs=utf8,gbk,gb2312,gb18030
+"
+" 解决Windows目录问题
+" autocmd BufEnter * silent! lcd %:p:h
+" set autochdir
+"
+" 退格键可用
+set backspace=indent,eol,start
+
+" 搜索忽略大小写
+set ic
+
+" 设置字体和字体大小
+set gfn=Consolas:h12
+"
+" 设置主题
+syntax on
 colorscheme Zenburn
+
+" 显示行号
+set nu
+
+" 不生成交换文件和备份文件
+set noswapfile               " 不生成交换文???
+set nobackup                 " 不生成备份文???
+
+
+" 设置通用缩进策略
+set shiftwidth=4
+set tabstop=4
+set smarttab
+set softtabstop=4
+set tw=80
+
+" 设置leader
+let mapleader=","
+
+" 将ESC键映射为jk键                                       
+inoremap jk <Esc>  
+
+nmap <leader>n :NERDTreeToggle<CR>
+map <leader>r :NERDTreeFind<cr>
 
 " javascript高亮
 let g:javascript_plugin_jsdoc = 1
@@ -83,39 +130,61 @@ let g:javascript_plugin_ngdoc = 1
 let g:javascript_plugin_flow = 1
 let g:jsx_ext_required = 0
 
+" Windows Python36 
+if  has('python3') == 0
+	set pythonthreedll=C:/Users/yingsong.li/Python36/python36.dll
+endif
+"
 " TagBar              tags标签浏览
-let g:tagbar_ctags_bin='/c/Users/yingsong.li/ctags58/ctags.exe'
-let g:tagbar_width=40
+let g:tagbar_ctags_bin='C:/Users/yingsong.li/ctags58/ctags.exe' 
+
+let g:tagbar_width=30
 let g:tagbar_sort = 0                          " 关闭排序     [也就是按标签本身在文件中的位置排序]
 let g:tagbar_show_linenumbers = 1             " 显示行号     [使用全局关于行号的默认配置]
-let g:tagbar_autopreview = 0                   " 开启自动预???[
-let g:tagbar_autofocus = 1                 
+let g:tagbar_autopreview = 0                   " 开启自动预???[随着光标在标签上的移动，顶部会出现一个实时的预览窗口]
 let g:tagbar_type_elixir = {'ctagstype': 'elixir', 'kinds': ['f:functions:0:0', 'c:callbacks:0:0', 'd:delegates:0:0', 'e:exceptions:0:0', 'i:implementations:0:0', 'a:macros:0:0', 'o:operators:0:0', 'm:modules:0:0', 'p:protocols:0:0', 'r:records:0:0'], 'sro': '.'}
-nmap <F4> :TagbarToggle<cr><c-w><c-l>
+nmap <leader>t :TagbarToggle<cr><c-w><c-l>
 
-" CTRLP
-let g:ctrlp_working_path_mode = 'ra'
-" set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/.tmp/*,*/.sass-cache/*,*/node_modules/*,*.keep,*.DS_Store,*/.git/*
-let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
-" let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d'  " Windows
-" let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|bower_components\|.sass-cache\|.git\|build'
-" CtrlPFuncky
-let mapleader=","
-nnoremap <Leader>fu :CtrlPFunky<Cr> 
-" narrow the list down with a word under cursor 
-nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>"
-nmap <leader>w :w<CR>
+" JsBeautify
+nmap <leader>j1 :call JsBeautify()<CR>
+nmap <leader>j2 :call JsonBeautify()<CR>
+nmap <leader>j3 :call JsxBeautify()<CR>
+nmap <leader>j4 :call HtmlBeautify()<CR>
+nmap <leader>j5 :call CSSBeautify()<CR>
 
-" markdown vim
-let g:vim_markdown_folding_disabled = 1
+" LeaderF
+nmap <leader>f :Leaderf<CR>
+
+" JsDoc
+nmap <leader>d :JsDoc<CR>
+
+" Ctrlp && Ctrlp-funky
+" let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+nnoremap <Leader>F :CtrlPFunky<Cr>
+
+" Ag
+let g:ag_working_path_mode="r"
+set laststatus=2
 
 " airline
 let g:airline#extensions#tabline#enabled = 1
-"Note: This option must be set in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
-" Disable AutoComplPop.
-let g:acp_enableAtStartup = 0
-" Use neocomplete.
+function! AccentDemo()
+  let keys = ['a','b','c','d','e','f','g','h']
+  for k in keys
+    call airline#parts#define_text(k, k)
+  endfor
+  call airline#parts#define_accent('a', 'red')
+  call airline#parts#define_accent('b', 'green')
+  call airline#parts#define_accent('c', 'blue')
+  call airline#parts#define_accent('d', 'yellow')
+  call airline#parts#define_accent('e', 'orange')
+  call airline#parts#define_accent('f', 'purple')
+  call airline#parts#define_accent('g', 'bold')
+  call airline#parts#define_accent('h', 'italic')
+  let g:airline_section_a = airline#section#create(keys)
+endfunction
+autocmd VimEnter * call AccentDemo()
+
 "Note: This option must be set in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
@@ -199,3 +268,5 @@ filetype plugin indent on    " required
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
+"
+" Plugin 'https://github.com/airblade/vim-gitgutter.git'
