@@ -1,9 +1,12 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-" set the runtime path to include Vundle and initialize
+“ set the runtime path to include Vundle and initialize
+“ set rtp+=$HOME/vimfiles/bundle/Vundle.vim/ 
+“ call vundle#begin('$USERPROFILE/vimfiles/bundle/')
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
+
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
 
@@ -20,7 +23,7 @@ Plugin 'https://github.com/mattn/emmet-vim.git'
 " Plugin 'https://github.com/easymotion/vim-easymotion.git'
 Plugin 'https://github.com/majutsushi/tagbar.git'
 Plugin 'https://github.com/vim-scripts/vim-cursorword.git'
-" Plugin 'https://github.com/godlygeek/tabular.git'
+Plugin 'https://github.com/godlygeek/tabular.git'
 " Plugin 'https://github.com/moll/vim-bbye.git'
 " Plugin 'https://github.com/vim-scripts/DoxygenToolkit.vim.git'
 " Plugin 'https://github.com/jlanzarotta/bufexplorer.git'
@@ -51,7 +54,7 @@ Plugin 'https://github.com/digitaltoad/vim-jade.git'
 Plugin 'https://github.com/briancollins/vim-jst.git'
 " Plugin 'https://github.com/skywind3000/asyncrun.vim.git'
 " Plugin 'https://github.com/chemzqm/wxapp.vim.git'
-" Plugin 'https://github.com/airblade/vim-gitgutter.git'
+Plugin 'https://github.com/airblade/vim-gitgutter.git'
 " Plugin 'https://github.com/ervandew/supertab.git'
 " Plugin 'https://github.com/nono/jquery.vim.git'
 " Plugin 'ryanoasis/vim-devicons'
@@ -63,24 +66,53 @@ Plugin 'https://github.com/briancollins/vim-jst.git'
 " Vundle
 Plugin 'jbgutierrez/vim-babel'
 " Plugin 'mattn/webapi-vim'
+" Leaderf / CtrlP
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'tacahiroy/ctrlp-funky'
 Plugin 'Yggdroot/LeaderF'
 Plugin 'https://github.com/heavenshell/vim-jsdoc'
 Plugin 'Shougo/neocomplete.vim'
 
-" 设置通用缩进策略
-set shiftwidth=4
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+
+" 解决乱码问题
+set fileencodings=utf-8,gb2312,gb18030,gbk,ucs-bom,cp936,latin1
+set enc=utf8
+set fencs=utf8,gbk,gb2312,gb18030
+"
+" 解决Windows目录问题
+" autocmd BufEnter * silent! lcd %:p:h
+" set autochdir
+"
+" 退格键可用
+set backspace=indent,eol,start
+
 " 搜索忽略大小写
 set ic
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-"
+ " GitGutterPreviewHunk
+nmap <Leader>hv <Plug>GitGutterPreviewHunk
+
 " 设置字体和字体大小
+set gfn=Consolas:h12
 set gfn=Monaco:h14
 
+"
 " 设置主题
 syntax on
 colorscheme Zenburn
+
+" 显示行号
+set nu
+"
+"不自动换行
+set nowrap
+
+" 不生成交换文件和备份文件
+set noswapfile               " 不生成交换文???
+set nobackup                 " 不生成备份文???
+
 
 " 设置通用缩进策略
 set shiftwidth=4
@@ -89,15 +121,14 @@ set smarttab
 set softtabstop=4
 set tw=80
 
-" 显示行号
-set nu
-
 " 设置leader
 let mapleader=","
 
 " 将ESC键映射为jk键                                       
 inoremap jk <Esc>  
+
 nmap <leader>n :NERDTreeToggle<CR>
+map <leader>r :NERDTreeFind<cr>
 
 " javascript高亮
 let g:javascript_plugin_jsdoc = 1
@@ -105,8 +136,14 @@ let g:javascript_plugin_ngdoc = 1
 let g:javascript_plugin_flow = 1
 let g:jsx_ext_required = 0
 
+" Windows Python36 
+if  has('python3') == 0
+	set pythonthreedll=C:/Users/yingsong.li/Python36/python36.dll
+endif
+"
 " TagBar              tags标签浏览
-" let g:tagbar_ctags_bin='/c/Users/yingsong.li/ctags58/ctags.exe'
+let g:tagbar_ctags_bin='C:/Users/yingsong.li/ctags58/ctags.exe' 
+
 let g:tagbar_width=30
 let g:tagbar_sort = 0                          " 关闭排序     [也就是按标签本身在文件中的位置排序]
 let g:tagbar_show_linenumbers = 1             " 显示行号     [使用全局关于行号的默认配置]
@@ -124,8 +161,19 @@ nmap <leader>j5 :call CSSBeautify()<CR>
 " LeaderF
 nmap <leader>f :Leaderf<CR>
 
+" JsDoc
+nmap <leader>d :JsDoc<CR>
+
+" Ctrlp && Ctrlp-funky
+" let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+nnoremap <Leader>F :CtrlPFunky<Cr>
+
 " Ag
 let g:ag_working_path_mode="r"
+set laststatus=2
+
+" GitGutterPreviewHunk
+nmap <Leader>hv <Plug>GitGutterPreviewHunk
 
 " airline
 let g:airline#extensions#tabline#enabled = 1
@@ -230,4 +278,5 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 "
-" Plugin 'https://github.com/airblade/vim-gitgutter.git'
+" Plugin 'https://github.com/airblade/vim-gitgutter.git' Plugin 'https://github.com/airblade/vim-gitgutter.git'
+set rtp+=$HOME/vimfiles/bundle/Vundle.vim/ 
