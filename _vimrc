@@ -15,6 +15,7 @@ call vundle#begin('$USERPROFILE/vimfiles/bundle/')
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'jnurmine/Zenburn'
+Plugin 'altercation/vim-colors-solarized'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'https://github.com/scrooloose/nerdtree.git'
@@ -25,7 +26,7 @@ Plugin 'https://github.com/mattn/emmet-vim.git'
 " Plugin 'https://github.com/easymotion/vim-easymotion.git'
 Plugin 'https://github.com/majutsushi/tagbar.git'
 Plugin 'https://github.com/vim-scripts/vim-cursorword.git'
-" Plugin 'https://github.com/godlygeek/tabular.git'
+Plugin 'https://github.com/godlygeek/tabular.git'
 " Plugin 'https://github.com/moll/vim-bbye.git'
 " Plugin 'https://github.com/vim-scripts/DoxygenToolkit.vim.git'
 " Plugin 'https://github.com/jlanzarotta/bufexplorer.git'
@@ -56,7 +57,7 @@ Plugin 'https://github.com/digitaltoad/vim-jade.git'
 Plugin 'https://github.com/briancollins/vim-jst.git'
 " Plugin 'https://github.com/skywind3000/asyncrun.vim.git'
 " Plugin 'https://github.com/chemzqm/wxapp.vim.git'
-" Plugin 'https://github.com/airblade/vim-gitgutter.git'
+Plugin 'https://github.com/airblade/vim-gitgutter.git'
 " Plugin 'https://github.com/ervandew/supertab.git'
 " Plugin 'https://github.com/nono/jquery.vim.git'
 " Plugin 'ryanoasis/vim-devicons'
@@ -78,6 +79,17 @@ Plugin 'Shougo/neocomplete.vim'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 
+" 解决GVIM外观问题
+if has("gui_running")
+"au GUIEnter * simalt ~x " 窗口启动时自动最大化
+" set guioptions-=m " 隐藏菜单栏
+set guioptions-=T " 隐藏工具栏
+"set guioptions-=L " 隐藏左侧滚动条
+"set guioptions-=r " 隐藏右侧滚动条
+"set guioptions-=b " 隐藏底部滚动条
+"set showtabline=0 " 隐藏Tab栏
+endif
+
 " 解决乱码问题
 set fileencodings=utf-8,gb2312,gb18030,gbk,ucs-bom,cp936,latin1
 set enc=utf8
@@ -97,8 +109,10 @@ set ic
 set gfn=Consolas:h12
 "
 " 设置主题
-syntax on
 colorscheme Zenburn
+syntax enable
+" set background=dark
+" colorscheme solarized
 
 " 显示行号
 set nu
@@ -124,16 +138,15 @@ inoremap jk <Esc>
 nmap <leader>n :NERDTreeToggle<CR>
 map <leader>r :NERDTreeFind<cr>
 
+" AG CtrlSF
+map <leader>g :Ag<cr>
+map <leader>bg :AgBuffer<cr>
+
 " javascript高亮
 let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_ngdoc = 1
 let g:javascript_plugin_flow = 1
 let g:jsx_ext_required = 0
-
-" Windows Python36 
-if  has('python3') == 0
-	set pythonthreedll=C:/Users/yingsong.li/Python36/python36.dll
-endif
 "
 " TagBar              tags标签浏览
 let g:tagbar_ctags_bin='C:/Users/yingsong.li/ctags58/ctags.exe' 
@@ -151,6 +164,12 @@ nmap <leader>j2 :call JsonBeautify()<CR>
 nmap <leader>j3 :call JsxBeautify()<CR>
 nmap <leader>j4 :call HtmlBeautify()<CR>
 nmap <leader>j5 :call CSSBeautify()<CR>
+
+" 添加Python依赖 注意版本
+if  has('python3') == 0
+	set pythonthreedll=D:\git_code\vim\Python36\python36.dll
+endif
+
 
 " LeaderF
 nmap <leader>f :Leaderf<CR>
@@ -184,6 +203,7 @@ function! AccentDemo()
   let g:airline_section_a = airline#section#create(keys)
 endfunction
 autocmd VimEnter * call AccentDemo()
+autocmd GUIEnter * simalt ~x
 
 "Note: This option must be set in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
 " Disable AutoComplPop.
