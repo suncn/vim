@@ -1,6 +1,5 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
-
 " set the runtime path to include Vundle and initialize
 " set rtp+=$HOME/vimfiles/bundle/Vundle.vim/ 
 " call vundle#begin('$USERPROFILE/vimfiles/bundle/')
@@ -13,14 +12,15 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'jnurmine/Zenburn'
+Plugin 'voronianski/oceanic-next-color-scheme'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'https://github.com/scrooloose/nerdtree.git'
 Plugin 'https://github.com/terryma/vim-multiple-cursors.git'
 Plugin 'https://github.com/tpope/vim-surround.git'
 Plugin 'https://github.com/mattn/emmet-vim.git'
-" Plugin 'https://github.com/mbbill/undotree.git'
-" Plugin 'https://github.com/easymotion/vim-easymotion.git'
+Plugin 'https://github.com/mbbill/undotree.git'
+Plugin 'https://github.com/easymotion/vim-easymotion.git'
 Plugin 'https://github.com/majutsushi/tagbar.git'
 Plugin 'https://github.com/vim-scripts/vim-cursorword.git'
 Plugin 'https://github.com/godlygeek/tabular.git'
@@ -28,7 +28,7 @@ Plugin 'https://github.com/godlygeek/tabular.git'
 " Plugin 'https://github.com/vim-scripts/DoxygenToolkit.vim.git'
 " Plugin 'https://github.com/jlanzarotta/bufexplorer.git'
 " Plugin 'https://github.com/luochen1990/rainbow.git'
-" Plugin 'https://github.com/scrooloose/nerdcommenter.git'
+Plugin 'https://github.com/scrooloose/nerdcommenter.git'
 " Plugin 'https://github.com/Yggdroot/indentLine.git'
 Plugin 'https://github.com/maksimr/vim-jsbeautify.git'
 " Plugin 'https://github.com/gorodinskiy/vim-coloresque.git'
@@ -39,9 +39,9 @@ Plugin 'https://github.com/plasticboy/vim-markdown.git'
 Plugin 'https://github.com/iamcco/markdown-preview.vim.git'
 Plugin 'https://github.com/jiangmiao/auto-pairs.git'
 " Plugin 'https://github.com/tpope/vim-repeat.git'
-" Plugin 'https://github.com/vim-scripts/AuthorInfo.git'  " 需要修改fplugin为plugin
+Plugin 'https://github.com/vim-scripts/AuthorInfo.git'  " 
 Plugin 'https://github.com/othree/javascript-libraries-syntax.vim.git'
-Plugin 'https://github.com/leshill/vim-json.git'
+Plugin 'elzr/vim-json'
 Plugin 'jwalton512/vim-blade'
 " Plugin 'https://github.com/Valloric/MatchTagAlways.git'
 Plugin 'https://github.com/gregsexton/MatchTag.git'
@@ -55,7 +55,10 @@ Plugin 'https://github.com/briancollins/vim-jst.git'
 " Plugin 'https://github.com/skywind3000/asyncrun.vim.git'
 " Plugin 'https://github.com/chemzqm/wxapp.vim.git'
 Plugin 'https://github.com/airblade/vim-gitgutter.git'
-" Plugin 'https://github.com/ervandew/supertab.git'
+
+" Plugin 'ternjs/tern_for_vim'
+" Plugin 'ervandew/supertab'
+
 " Plugin 'https://github.com/nono/jquery.vim.git'
 " Plugin 'ryanoasis/vim-devicons'
 " Plugin 'trailing-whitespace'
@@ -71,7 +74,7 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'tacahiroy/ctrlp-funky'
 Plugin 'Yggdroot/LeaderF'
 Plugin 'https://github.com/heavenshell/vim-jsdoc'
-Plugin 'Shougo/neocomplete.vim'
+Plugin 'Valloric/YouCompleteMe'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -95,13 +98,15 @@ set ic
 nmap <Leader>hv <Plug>GitGutterPreviewHunk
 
 " 设置字体和字体大小
-set gfn=Consolas:h12
-set gfn=Monaco:h14
+set gfn=Consolas:h14
+set gfn=Monaco:h16
 
 "
 " 设置主题
-syntax on
-colorscheme Zenburn
+" syntax on
+set background=dark
+let g:colors_name = "base16-oceanicnext"
+
 
 " 显示行号
 set nu
@@ -115,11 +120,12 @@ set nobackup                 " 不生成备份文???
 
 
 " 设置通用缩进策略
-set shiftwidth=4
-set tabstop=4
+set shiftwidth=2
+set tabstop=2
 set smarttab
-set softtabstop=4
-set tw=80
+set softtabstop=2
+set tw=800
+set expandtab
 
 " 设置leader
 let mapleader=","
@@ -137,12 +143,12 @@ let g:javascript_plugin_flow = 1
 let g:jsx_ext_required = 0
 
 " Windows Python36 
-if  has('python3') == 0
-	set pythonthreedll=C:/Users/yingsong.li/Python36/python36.dll
-endif
+" if  has('python3') == 0
+" 	set pythonthreedll=C:/Users/yingsong.li/Python36/python36.dll
+" endif
 "
 " TagBar              tags标签浏览
-let g:tagbar_ctags_bin='C:/Users/yingsong.li/ctags58/ctags.exe' 
+" let g:tagbar_ctags_bin='C:/Users/yingsong.li/ctags58/ctags.exe' 
 
 let g:tagbar_width=30
 let g:tagbar_sort = 0                          " 关闭排序     [也就是按标签本身在文件中的位置排序]
@@ -161,6 +167,26 @@ nmap <leader>j5 :call CSSBeautify()<CR>
 " LeaderF
 nmap <leader>f :Leaderf<CR>
 
+" NERDCOmmeter
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+
+" Use compact syntax for prettified multi-line comments
+let g:NERDCompactSexyComs = 1
+
+" Align line-wise comment delimiters flush left instead of following code indentation
+let g:NERDDefaultAlign = 'left'
+
+" Add your own custom formats or override the defaults
+" let g:NERDCustomDelimiters = { 'javascript': { 'left': '/**','right': '*/' } }
+
+" Allow commenting and inverting empty lines (useful when commenting a region)
+let g:NERDCommentEmptyLines = 1
+
+" Enable trimming of trailing whitespace when uncommenting
+let g:NERDTrimTrailingWhitespace = 1
+
+
 " JsDoc
 nmap <leader>d :JsDoc<CR>
 
@@ -177,106 +203,14 @@ nmap <Leader>hv <Plug>GitGutterPreviewHunk
 
 " airline
 let g:airline#extensions#tabline#enabled = 1
-function! AccentDemo()
-  let keys = ['a','b','c','d','e','f','g','h']
-  for k in keys
-    call airline#parts#define_text(k, k)
-  endfor
-  call airline#parts#define_accent('a', 'red')
-  call airline#parts#define_accent('b', 'green')
-  call airline#parts#define_accent('c', 'blue')
-  call airline#parts#define_accent('d', 'yellow')
-  call airline#parts#define_accent('e', 'orange')
-  call airline#parts#define_accent('f', 'purple')
-  call airline#parts#define_accent('g', 'bold')
-  call airline#parts#define_accent('h', 'italic')
-  let g:airline_section_a = airline#section#create(keys)
-endfunction
-autocmd VimEnter * call AccentDemo()
 
-"Note: This option must be set in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
-" Disable AutoComplPop.
-let g:acp_enableAtStartup = 0
-" Use neocomplete.
-let g:neocomplete#enable_at_startup = 1
-" Use smartcase.
-let g:neocomplete#enable_smart_case = 1
-" Set minimum syntax keyword length.
-let g:neocomplete#sources#syntax#min_keyword_length = 3
+" ycm
+let g:ycm_add_preview_to_completeopt = 1 
+let g:ycm_autoclose_preview_window_after_completion = 1
 
-" Define dictionary.
-let g:neocomplete#sources#dictionary#dictionaries = {
-    \ 'default' : '',
-    \ 'vimshell' : $HOME.'/.vimshell_hist',
-    \ 'scheme' : $HOME.'/.gosh_completions'
-        \ }
-
-" Define keyword.
-if !exists('g:neocomplete#keyword_patterns')
-    let g:neocomplete#keyword_patterns = {}
+if has("persistent_undo")
+    set undodir=~/.undodir/
+    set undofile
 endif
-let g:neocomplete#keyword_patterns['default'] = '\h\w*'
 
-" Plugin key-mappings.
-inoremap <expr><C-g>     neocomplete#undo_completion()
-inoremap <expr><C-l>     neocomplete#complete_common_string()
-
-" Recommended key-mappings.
-" <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-  return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
-  " For no inserting <CR> key.
-  "return pumvisible() ? "\<C-y>" : "\<CR>"
-endfunction
-" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-" Close popup by <Space>.
-"inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
-
-" AutoComplPop like behavior.
-"let g:neocomplete#enable_auto_select = 1
-
-" Shell like behavior(not recommended).
-"set completeopt+=longest
-"let g:neocomplete#enable_auto_select = 1
-"let g:neocomplete#disable_auto_complete = 1
-"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
-
-" Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
-" Enable heavy omni completion.
-if !exists('g:neocomplete#sources#omni#input_patterns')
-  let g:neocomplete#sources#omni#input_patterns = {}
-endif
-"let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-"let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-"let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-
-" For perlomni.vim setting.
-" https://github.com/c9s/perlomni.vim
-let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
-
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-"
-" Plugin 'https://github.com/airblade/vim-gitgutter.git' Plugin 'https://github.com/airblade/vim-gitgutter.git'
 set rtp+=$HOME/vimfiles/bundle/Vundle.vim/ 
